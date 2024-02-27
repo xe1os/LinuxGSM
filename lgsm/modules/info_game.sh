@@ -1170,16 +1170,19 @@ fn_info_game_col() {
 # Filetype: cfg
 fn_info_game_cs2() {
 	if [ -f "${servercfgfullpath}" ]; then
+		fn_info_game_valve_keyvalues "rconpassword" "rcon_password"
 		fn_info_game_valve_keyvalues "servername" "hostname"
-		fn_info_game_valve_keyvalues "defaultmap" "map"
-		fn_info_game_valve_keyvalues "password" "sv_password"
+		fn_info_game_valve_keyvalues "serverpassword" "sv_password"
 	fi
+	clientport="${clientport:-"0"}"
 	defaultmap="${defaultmap:-"NOT SET"}"
 	maxplayers="${maxplayers:-"0"}"
-	password="${password:-"NOT SET"}"
 	port="${port:-"0"}"
-	queryport="${port:-"0"}"
+	sourcetvport="${sourcetvport:-"0"}"
+	rconpassword="${rconpassword:-"NOT SET"}"
+	rconport="${port:-"0"}"
 	servername="${servername:-"NOT SET"}"
+	serverpassword="${serverpassword:-"NOT SET"}"
 }
 
 # Config Type: ini
