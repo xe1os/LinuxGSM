@@ -757,7 +757,7 @@ fn_mod_install_gameinfo_gi_file() {
 	if [ -f "${modinstalldir}/gameinfo.gi" ]; then
 		# modify the liblist.gam file to initialize Metamod
 		echo -en "modifying gameinfo.gi..."
-		sed -i "/Game_LowViolence/a \ \ \ \ \ \ \ \ \ \ \	\ Game\ \ \ \ csgo/addons/metamod" "${modinstalldir}/gameinfo.gi"
+		sed -i "/Game_LowViolence/a \ \ \ \ \ \ \ \ \ \ \ \ Game\ \ \ \ csgo/addons/metamod" "${modinstalldir}/gameinfo.gi"
 		exitcode=$?
 		# if replacement back didn't happen, error out.
 		if [ "${exitcode}" != 0 ]; then
