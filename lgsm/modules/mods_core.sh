@@ -749,6 +749,27 @@ fn_mod_remove_amxmodx_file() {
 	fi
 }
 
+fn_mod_install_gameinfo_gi_file() {
+	if [ -f "${modinstalldir}/gameinfo.gi" ]; then
+		# modify the liblist.gam file to initialize Metamod
+		logentry="awk /Game_LowViolence csgo_lv/ {print; print "Game csgo/addons/metamod"; next} 1' /game/csgo/gameinfo.gi > temp && mv temp /game/csgo/gameinfo.gi"
+		echo -en "modifying gameinfo.gi..."
+		awk '/Game_LowViolence csgo_lv/ {print; print "Game csgo/addons/metamod"; next} 1' /game/csgo/gameinfo.gi > temp && mv temp /game/csgo/gameinfo.gi
+		exitcode=$?
+		# if replacement back didn't happen, error out.
+		if [ "${exitcode}" != 0 ]; then
+			fn_script_log_fail "${logentry}"
+			fn_print_fail_eol_nl
+		else
+			fn_script_log_pass "${logentry}"
+			fn_print_ok_eol_nl
+		fi
+	fi
+}
+
+# fn_mod_remove_gameinfo_gi_file() {
+# }
+
 ## Database initialisation.
 
 mods_list.sh

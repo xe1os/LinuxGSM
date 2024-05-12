@@ -129,6 +129,12 @@ if [ "${modcommand}" == "amxmodx" ]; then
 	fn_mod_install_amxmodx_file
 fi
 
+# Modify gameinfo.gi for Metamod: Source 2
+if [ "${modcommand}" == "metamodsource2" ]; then
+	fn_mod_install_gameinfo_gi_file
+fi
+
+
 echo -e "${modprettyname} installed"
 fn_script_log_pass "${modprettyname} installed."
 
