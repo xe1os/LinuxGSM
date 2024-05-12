@@ -771,8 +771,8 @@ fn_mod_remove_gameinfo_gi_file() {
 	if [ -f "${modinstalldir}/gameinfo.gi" ]; then
 		# modify the liblist.gam file to initialize Metamod
 		logentry="sed '/Game csgo\/addons\/metamod/d' ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi"
-		echo -en "modifying gameinfo.gi..."
-		sed '/Game csgo\/addons\/metamod/d' ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi
+		echo -en "Restoring gameinfo.gi..."
+		sed "/Game csgo\/addons\/metamod/d" ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi
 		exitcode=$?
 		# if replacement back didn't happen, error out.
 		if [ "${exitcode}" != 0 ]; then
