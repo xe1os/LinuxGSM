@@ -754,7 +754,7 @@ fn_mod_install_gameinfo_gi_file() {
 		# modify the liblist.gam file to initialize Metamod
 		logentry="awk /Game_LowViolence csgo_lv/ {print; print "Game csgo/addons/metamod"; next} 1' ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi"
 		echo -en "modifying gameinfo.gi..."
-		awk '/Game_LowViolence csgo_lv/ {print; print "Game csgo/addons/metamod"; next} 1' ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi
+		awk '/Game_LowViolence csgo_lv/ {print; print "Game csgo/addons/metamod"; next} 1' "${modinstalldir}/gameinfo.gi" > temp && mv temp "${modinstalldir}/gameinfo.gi"
 		exitcode=$?
 		# if replacement back didn't happen, error out.
 		if [ "${exitcode}" != 0 ]; then
@@ -770,9 +770,9 @@ fn_mod_install_gameinfo_gi_file() {
 fn_mod_remove_gameinfo_gi_file() {
 	if [ -f "${modinstalldir}/gameinfo.gi" ]; then
 		# modify the liblist.gam file to initialize Metamod
-		logentry="sed '/Game csgo\/addons\/metamod/d' ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi"
+		logentry="sed -i '/Game csgo\/addons\/metamod/d' /game/csgo/gameinfo.gi"
 		echo -en "Restoring gameinfo.gi..."
-		sed "/Game csgo\/addons\/metamod/d" ${modinstalldir}/gameinfo.gi > temp && mv temp ${modinstalldir}/gameinfo.gi
+		sed -i "/Game csgo\/addons\/metamod/d" "${modinstalldir}/gameinfo.gi"
 		exitcode=$?
 		# if replacement back didn't happen, error out.
 		if [ "${exitcode}" != 0 ]; then
