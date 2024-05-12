@@ -188,6 +188,10 @@ fn_mod_tidy_files_list() {
 		sed -i "/^addons\/sourcemod\/scripting\/include\/dhooks.inc$/d" "${modsdir}/${modcommand}-files.txt"
 		sed -i "/^addons\/sourcemod\/scripting\/include\/updater.inc$/d" "${modsdir}/${modcommand}-files.txt"
 	fi
+
+	if [ "${modcommand}" == "metamodsource2" ]; then
+		sed -i "/^addons\/gameinfo.gi" "${modsdir}/${modcommand}-files.txt"
+	fi
 }
 
 ## Information Gathering.
@@ -745,6 +749,41 @@ fn_mod_remove_amxmodx_file() {
 				rm -f "${modinstalldir}/addons/metamod/plugins.ini"
 				fn_script_log_pass "file removed ${modinstalldir}/addons/metamod/plugins.ini because it was empty"
 			fi
+		fi
+	fi
+}
+
+fn_mod_install_gameinfo_gi_file() {
+	if [ -f "${modinstalldir}/gameinfo.gi" ]; then
+		# modify the liblist.gam file to initialize Metamod
+		echo -en "modifying gameinfo.gi..."
+		sed -i "/Game_LowViolence/a \ \ \ \ \ \ \ \ \ \ \ Game\ \ \ \ csgo/addons/metamod" "${modinstalldir}/gameinfo.gi"
+		exitcode=$?
+		# if replacement back didn't happen, error out.
+		if [ "${exitcode}" != 0 ]; then
+			fn_script_log_fail "${logentry}"
+			fn_print_fail_eol_nl
+		else
+			fn_script_log_pass "${logentry}"
+			fn_print_ok_eol_nl
+		fi
+	fi
+}
+
+fn_mod_remove_gameinfo_gi_file() {
+	if [ -f "${modinstalldir}/gameinfo.gi" ]; then
+		# modify the liblist.gam file to initialize Metamod
+		logentry="sed -i '/csgo\/addons\/metamod/d' /game/csgo/gameinfo.gi"
+		echo -en "Restoring gameinfo.gi..."
+		sed -i "/csgo\/addons\/metamod/d" "${modinstalldir}/gameinfo.gi"
+		exitcode=$?
+		# if replacement back didn't happen, error out.
+		if [ "${exitcode}" != 0 ]; then
+			fn_script_log_fail "${logentry}"
+			fn_print_fail_eol_nl
+		else
+			fn_script_log_pass "${logentry}"
+			fn_print_ok_eol_nl
 		fi
 	fi
 }
