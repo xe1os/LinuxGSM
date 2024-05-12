@@ -188,6 +188,10 @@ fn_mod_tidy_files_list() {
 		sed -i "/^addons\/sourcemod\/scripting\/include\/dhooks.inc$/d" "${modsdir}/${modcommand}-files.txt"
 		sed -i "/^addons\/sourcemod\/scripting\/include\/updater.inc$/d" "${modsdir}/${modcommand}-files.txt"
 	fi
+
+	if [ "${modcommand}" == "metamodsource2" ]; then
+		sed -i "/^addons\/gameinfo.gi" "${modsdir}/${modcommand}-files.txt"
+	fi
 }
 
 ## Information Gathering.
