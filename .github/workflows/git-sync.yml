@@ -9,7 +9,7 @@ on:
 
 jobs:
   gitHub-to-bitbucket:
-    if: github.repository_owner == 'GameServerManagers'
+    if: github.repository_owner == 'xe1os'
     runs-on: ubuntu-latest
     steps:
       - name: SSH Agent
@@ -21,7 +21,7 @@ jobs:
         uses: wei/git-sync@v3.0.0
         with:
           ssh_private_key: ${{ secrets.BITBUCKET_SECRET }}
-          source_repo: "https://github.com/GameServerManagers/LinuxGSM"
+          source_repo: "https://github.com/xe1os/LinuxGSM"
           source_branch: "refs/heads/*"
-          destination_repo: "git@bitbucket.org:GameServerManagers/linuxgsm.git"
+          destination_repo: "git@bitbucket.org:xe1os/linuxgsm.git"
           destination_branch: "refs/heads/*"

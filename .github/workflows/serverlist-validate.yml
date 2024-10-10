@@ -5,7 +5,7 @@ on:
 
 jobs:
   serverlist-validate:
-    if: github.repository_owner == 'GameServerManagers'
+    if: github.repository_owner == 'xe1os'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   create-matrix:
-    if: github.repository_owner == 'GameServerManagers'
+    if: github.repository_owner == 'xe1os'
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -31,7 +31,7 @@ jobs:
           echo -n "matrix=${shortnamearray}" >> $GITHUB_OUTPUT
 
   details-check:
-    if: github.repository_owner == 'GameServerManagers'
+    if: github.repository_owner == 'xe1os'
     needs: create-matrix
     continue-on-error: true
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Download linuxgsm.sh
-        run: wget https://raw.githubusercontent.com/GameServerManagers/LinuxGSM/${GITHUB_REF#refs/heads/}/linuxgsm.sh; chmod +x linuxgsm.sh
+        run: wget https://raw.githubusercontent.com/xe1os/LinuxGSM/${GITHUB_REF#refs/heads/}/linuxgsm.sh; chmod +x linuxgsm.sh
 
       - name: Install dependencies
         run: sudo apt-get install libxml2-utils jq
@@ -66,7 +66,7 @@ jobs:
           if [ "${{ steps.sets-servercfgname.outputs.servercfgname }}" == "" ]; then
             echo "This game server has no config file."
           else
-            curl -f -o config "https://raw.githubusercontent.com/GameServerManagers/Game-Server-Configs/main/${{ matrix.shortname }}/${{ steps.sets-servercfgname.outputs.servercfgname }}"
+            curl -f -o config "https://raw.githubusercontent.com/xe1os/Game-Server-Configs/main/${{ matrix.shortname }}/${{ steps.sets-servercfgname.outputs.servercfgname }}"
           fi
       - name: Display config
         run: |

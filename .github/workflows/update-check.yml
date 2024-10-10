@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   update-check:
-    if: github.repository_owner == 'GameServerManagers'
+    if: github.repository_owner == 'xe1os'
     continue-on-error: true
     runs-on: ubuntu-latest
 
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Download linuxgsm.sh
-        run: wget https://raw.githubusercontent.com/GameServerManagers/LinuxGSM/${GITHUB_REF#refs/heads/}/linuxgsm.sh; chmod +x linuxgsm.sh
+        run: wget https://raw.githubusercontent.com/xe1os/LinuxGSM/${GITHUB_REF#refs/heads/}/linuxgsm.sh; chmod +x linuxgsm.sh
 
       - name: Install dependencies
         run: sudo dpkg --add-architecture i386; sudo apt-get update;
