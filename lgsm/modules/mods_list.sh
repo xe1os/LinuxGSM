@@ -230,7 +230,7 @@ mod_info_bepinexvh=(MOD "bepinexvh" "BepInEx Valheim" "${bepinexvhlatestlink}" "
 # CS2 Mods
 mod_info_metamodsource2=(MOD "metamodsource2" "Metamod: Source 2 (dev build)" "${metamodsource2url}" "${metamodsource2latestfile}" "0" "LowercaseOff" "${systemdir}" "addons/metamod/metaplugins.ini;" "source2;" "GAMES" "NOTGAMES" "https://www.metamodsource.net" "Plugins Framework ported to Source 2")
 mod_info_cssharp=(MOD "cssharp" "Counter Strike Sharp" "${cssharplatestlink}" "${cssharplatestfile}" "0" "LowercaseOff" "${systemdir}" "addons/metamod/metaplugins.ini;" "source2;" "GAMES" "NOTGAMES" "https://docs.cssharp.dev/" "Plugins/mod framework (Requires Metamod: Source 2)")
-mod_info_simpleadmin=(MOD "simpleadmin" "CS2-SimpleAdmin" "${simpleadminlatestlink}" "CS2-SimpleAdmin" "0" "LowercaseOff" "${systemdir}/addons" "addons/counterstrikesharp/configs/plugins/CS2-SimpleAdmin;" "source2;" "GAMES" "NOTGAMES" "https://cs2-simpleadmin.daffyy.love/" "Manage your Counter-Strike 2 server by simple commands")
+mod_info_simpleadmin=(MOD "simpleadmin" "CS2-SimpleAdmin" "${simpleadminlatestlink}" "CS2-SimpleAdmin.zip" "0" "LowercaseOff" "${systemdir}/addons" "addons/counterstrikesharp/configs/plugins/CS2-SimpleAdmin;" "source2;" "GAMES" "NOTGAMES" "https://cs2-simpleadmin.daffyy.love/" "Manage your Counter-Strike 2 server by simple commands")
 mod_info_matchzy=(MOD "matchzy" "MatchZy" "${matchzylatestlink}" "${matchzylatestfile}"  "0" "LowercaseOff" "${systemdir}" "cfg/MatchZy;" "source2;" "GAMES" "NOTGAMES" "https://shobhit-pathak.github.io/MatchZy/" "Plugin for running and managing practice/pugs/scrims/matches")
 
 # REQUIRED: Set all mods info into the global array
