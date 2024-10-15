@@ -969,7 +969,8 @@ fn_info_messages_cs2() {
 	{
 		fn_port "header"
 		fn_port "Game" port udp
-		fn_port "Query" queryport tcp
+		fn_port "RCON" rconport tcp
+		fn_port "SourceTV" sourcetvport udp
 	} | column -s $'\t' -t
 }
 

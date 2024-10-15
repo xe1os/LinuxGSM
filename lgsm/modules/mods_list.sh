@@ -76,6 +76,17 @@ stripperversion="1.2.2-git141"
 stripperlatestfile="stripper-${stripperversion}-linux.tar.gz"
 stripperdownloadurl="http://www.bailopan.net/stripper/snapshots/1.2/${stripperlatestfile}"
 stripperurl="${stripperdownloadurl}"
+# Metamod:Source 2
+metamodsource2version="2.0"
+metamodsource2scrapeurl="https://mms.alliedmods.net/mmsdrop/${metamodsource2version}/mmsource-latest-linux"
+metamodsource2latestfile=$(wget "${metamodsource2scrapeurl}" -q -O -)
+metamodsource2downloadurl="https://www.metamodsource.net/latest.php?os=linux&version=${metamodsource2version}"
+metamodsource2url="${metamodsource2downloadurl}"
+# Counter Strike Sharp
+cssharplastbuild=$(curl --connect-timeout 10 -sL https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest | jq '.assets[] | select(.browser_download_url | contains("runtime") and contains("linux"))')
+cssharplatestfile=$(echo "${cssharplastbuild}" | jq -r '.name')
+cssharpdownloadurl=$(echo "${cssharplastbuild}" | jq -r '.browser_download_url')
+cssharpurl="${cssharpdownloadurl}"
 
 # CS:GO Mods
 get5lastbuild=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/get5/releases/latest | jq '.assets[] |select(.browser_download_url | endswith(".tar.gz"))')
@@ -93,6 +104,12 @@ gokzlatestlink="https://github.com/KZGlobalTeam/gokz/releases/download/${gokzlat
 movementapilatestversion=$(curl --connect-timeout 3 -s https://api.github.com/repos/danzayau/MovementAPI/releases/latest | grep "tag_name" | cut -d : -f 2,3 | sed -E 's/.*"([^"]+)".*/\1/')
 movementapilatestfile="MovementAPI-v${movementapilatestversion}.zip"
 movementapilatestlink="https://github.com/danzayau/MovementAPI/releases/download/${movementapilatestversion}/${movementapilatestfile}"
+
+# CS2 Mods
+simpleadminlatestlink=$(curl --connect-timeout 10 -sL https://api.github.com/repos/daffyyyy/CS2-SimpleAdmin/releases/latest | jq -r '.assets[].browser_download_url')
+matchzylatestversion=$(curl --connect-timeout 10 -s https://api.github.com/repos/shobhit-pathak/MatchZy/releases/latest | grep "tag_name" | cut -d : -f 2,3 | sed -E 's/.*"([^"]+)".*/\1/')
+matchzylatestfile="MatchZy-${matchzylatestversion}.zip"
+matchzylatestlink="https://github.com/shobhit-pathak/MatchZy/releases/download/${matchzylatestversion}/${matchzylatestfile}"
 
 # Rust
 carbonrustapilatestfile="Carbon.Linux.Release.tar.gz"
@@ -211,5 +228,11 @@ mod_info_valheimplus=(MOD "valheimplus" "Valheim PLUS" "${valheimpluslatestlink}
 # BepInEx Valheim
 mod_info_bepinexvh=(MOD "bepinexvh" "BepInEx Valheim" "${bepinexvhlatestlink}" "denikson-BepInExPack_Valheim.zip" "0" "LowercaseOff" "${systemdir}" "OVERWRITE" "ENGINES" "Valheim;" "NOTGAMES" "https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/" "Unity / XNA game patcher and plugin framework")
 
+# CS2 Mods
+mod_info_metamodsource2=(MOD "metamodsource2" "Metamod: Source 2 (dev build)" "${metamodsource2url}" "${metamodsource2latestfile}" "0" "LowercaseOff" "${systemdir}" "addons/metamod/metaplugins.ini;" "source2;" "GAMES" "NOTGAMES" "https://www.metamodsource.net" "Plugins Framework ported to Source 2")
+mod_info_cssharp=(MOD "cssharp" "Counter Strike Sharp" "${cssharpurl}" "${cssharplatestfile}" "0" "LowercaseOff" "${systemdir}" "addons/metamod/metaplugins.ini;" "source2;" "GAMES" "NOTGAMES" "https://docs.cssharp.dev/" "Plugins/mod framework (Requires Metamod: Source 2)")
+mod_info_simpleadmin=(MOD "simpleadmin" "CS2-SimpleAdmin" "${simpleadminlatestlink}" "CS2-SimpleAdmin" "0" "LowercaseOff" "${systemdir}/addons" "OVERWRITE" "source2;" "GAMES" "NOTGAMES" "https://cs2-simpleadmin.daffyy.love/" "Manage your Counter-Strike 2 server by simple commands")
+mod_info_matchzy=(MOD "matchzy" "MatchZy" "${matchzylatestlink}" "${matchzylatestfile}"  "0" "LowercaseOff" "${systemdir}" "OVERWRITE" "source2;" "GAMES" "NOTGAMES" "https://shobhit-pathak.github.io/MatchZy/" "Plugin for running and managing practice/pugs/scrims/matches")
+
 # REQUIRED: Set all mods info into the global array
-mods_global_array=("${mod_info_metamod[@]}" "${mod_info_base_amxx[@]}" "${mod_info_cs_amxx[@]}" "${mod_info_dod_amxx[@]}" "${mod_info_tfc_amxx[@]}" "${mod_info_ns_amxx[@]}" "${mod_info_ts_amxx[@]}" "${mod_info_metamodsource[@]}" "${mod_info_sourcemod[@]}" "${mod_info_steamworks[@]}" "${mod_info_gokz[@]}" "${mod_info_ttt[@]}" "${mod_info_get5[@]}" "${mod_info_prac[@]}" "${mod_info_pug[@]}" "${mod_info_dhook[@]}" "${mod_info_movement[@]}" "${mod_info_cleaner[@]}" "${mod_info_ulib[@]}" "${mod_info_ulx[@]}" "${mod_info_utime[@]}" "${mod_info_uclip[@]}" "${mod_info_acf[@]}" "${mod_info_acf_missiles[@]}" "${mod_info_acf_sweps[@]}" "${mod_info_advdupe2[@]}" "${mod_info_pac3[@]}" "${mod_info_wiremod[@]}" "${mod_info_wiremodextras[@]}" "${mod_info_darkrp[@]}" "${mod_info_darkrpmodification[@]}" "${mod_info_rustcarbon[@]}" "${mod_info_rustoxide[@]}" "${mod_info_hwoxide[@]}" "${mod_info_sdtdoxide[@]}" "${mod_info_advduplicator[@]}" "${mod_info_trackassemblytool[@]}" "${mod_info_physpropertiesadv[@]}" "${mod_info_controlsystemse2[@]}" "${mod_info_e2pistontiming[@]}" "${mod_info_propcannontool[@]}" "${mod_info_gearassemblytool[@]}" "${mod_info_spinnertool[@]}" "${mod_info_surfacefrictiontool[@]}" "${mod_info_magneticdipole[@]}" "${mod_info_environmentorganizer[@]}" "${mod_info_precision_alignment[@]}" "${mod_info_improved_stacker[@]}" "${mod_info_improved_weight[@]}" "${mod_info_improved_antinoclip[@]}" "${mod_info_laserstool[@]}" "${mod_info_valheimplus[@]}" "${mod_info_bepinexvh[@]}")
+mods_global_array=("${mod_info_metamod[@]}" "${mod_info_base_amxx[@]}" "${mod_info_cs_amxx[@]}" "${mod_info_dod_amxx[@]}" "${mod_info_tfc_amxx[@]}" "${mod_info_ns_amxx[@]}" "${mod_info_ts_amxx[@]}" "${mod_info_metamodsource[@]}" "${mod_info_metamodsource2[@]}" "${mod_info_sourcemod[@]}" "${mod_info_steamworks[@]}" "${mod_info_gokz[@]}" "${mod_info_ttt[@]}" "${mod_info_get5[@]}" "${mod_info_prac[@]}" "${mod_info_pug[@]}" "${mod_info_dhook[@]}" "${mod_info_movement[@]}" "${mod_info_cleaner[@]}" "${mod_info_ulib[@]}" "${mod_info_ulx[@]}" "${mod_info_utime[@]}" "${mod_info_uclip[@]}" "${mod_info_acf[@]}" "${mod_info_acf_missiles[@]}" "${mod_info_acf_sweps[@]}" "${mod_info_advdupe2[@]}" "${mod_info_pac3[@]}" "${mod_info_wiremod[@]}" "${mod_info_wiremodextras[@]}" "${mod_info_darkrp[@]}" "${mod_info_darkrpmodification[@]}" "${mod_info_rustcarbon[@]}" "${mod_info_rustoxide[@]}" "${mod_info_hwoxide[@]}" "${mod_info_sdtdoxide[@]}" "${mod_info_advduplicator[@]}" "${mod_info_trackassemblytool[@]}" "${mod_info_physpropertiesadv[@]}" "${mod_info_controlsystemse2[@]}" "${mod_info_e2pistontiming[@]}" "${mod_info_propcannontool[@]}" "${mod_info_gearassemblytool[@]}" "${mod_info_spinnertool[@]}" "${mod_info_surfacefrictiontool[@]}" "${mod_info_magneticdipole[@]}" "${mod_info_environmentorganizer[@]}" "${mod_info_precision_alignment[@]}" "${mod_info_improved_stacker[@]}" "${mod_info_improved_weight[@]}" "${mod_info_improved_antinoclip[@]}" "${mod_info_laserstool[@]}" "${mod_info_valheimplus[@]}" "${mod_info_bepinexvh[@]}" "${mod_info_cssharp[@]}" "${mod_info_simpleadmin[@]}" "${mod_info_matchzy[@]}")

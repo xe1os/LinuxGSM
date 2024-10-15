@@ -147,6 +147,11 @@ if [ "${modcommand}" == "amxmodx" ]; then
 	fn_mod_remove_amxmodx_file
 fi
 
+# Remove metamod line from gameinfo.gi when uninstalling Metamod: Source 2
+if [ "${modcommand}" == "metamodsource2" ]; then
+	fn_mod_remove_gameinfo_gi_file
+fi
+
 echo -e "${modprettyname} removed"
 fn_script_log "${modprettyname} removed"
 
