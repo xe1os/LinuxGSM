@@ -1176,6 +1176,7 @@ fn_info_game_cs2() {
 		fn_info_game_valve_keyvalues "servername" "hostname"
 		fn_info_game_valve_keyvalues "serverpassword" "sv_password"
 	fi
+	clientport="${clientport:-"0"}"
 	defaultmap="${defaultmap:-"NOT SET"}"
 	maxplayers="${maxplayers:-"0"}"
 	port="${port:-"0"}"
