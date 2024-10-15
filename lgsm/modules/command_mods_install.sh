@@ -124,6 +124,11 @@ if [ "${modcommand}" == "metamod" ]; then
 	fn_mod_install_liblist_gam_file
 fi
 
+# Create/modify existing gameinfo.gi file for Metamod:Source 2
+if [ "${modcommand}" == "metamodsource2" ]; then
+	fn_mod_install_gameinfo_gi_file
+fi
+
 # Create/modify plugins.ini file for Metamod
 if [ "${modcommand}" == "amxmodx" ]; then
 	fn_mod_install_amxmodx_file
