@@ -190,7 +190,7 @@ fn_mod_tidy_files_list() {
 	fi
 
 	if [ "${modcommand}" == "metamodsource2" ]; then
-		sed -i "/^addons\/gameinfo.gi" "${modsdir}/${modcommand}-files.txt"
+		sed -i "/^addons\/gameinfo.gi$/d" "${modsdir}/${modcommand}-files.txt"
 	fi
 }
 
