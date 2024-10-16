@@ -1180,6 +1180,7 @@ fn_info_game_cs2() {
 	defaultmap="${defaultmap:-"NOT SET"}"
 	maxplayers="${maxplayers:-"0"}"
 	port="${port:-"0"}"
+	queryport="${port:-"0"}"
 	rconpassword="${rconpassword:-"NOT SET"}"
 	rconport="${port:-"0"}"
 	servername="${servername:-"NOT SET"}"
