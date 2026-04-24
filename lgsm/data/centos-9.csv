@@ -67,6 +67,7 @@ l4d
 l4d2
 mc,java-17-openjdk
 mcb,libnsl
+mcv
 mh
 mohaa,compat-libstdc++-33.i686
 mta,ncurses-compat-libs,libxml2
