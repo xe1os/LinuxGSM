@@ -14,10 +14,18 @@ while read -r line; do
 	export gamename
 	distro=$(echo "$line" | awk -F, '{ print $4 }')
 	export distro
+	# Legacy servers that require Ubuntu 22.04 or older
+	if [ "${shortname}" == "bfv" ]; then
+		runner="ubuntu-22.04"
+	else
+		runner="ubuntu-latest"
+	fi
 	{
 		echo -n "{";
 		echo -n "\"shortname\":";
 		echo -n "\"${shortname}\"";
+		echo -n ",\"runner\":";
+		echo -n "\"${runner}\"";
 		echo -n "},";
 	} >> "shortnamearray.json"
 done < <(tail -n +2 serverlist.csv)
