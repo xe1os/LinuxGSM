@@ -6,6 +6,9 @@ on:
 permissions:
   contents: read
 
+env:
+  datadir: lgsm/data
+
 jobs:
   serverlist-validate:
     if: github.repository_owner == 'GameServerManagers'
