@@ -82,7 +82,7 @@ onset,libmariadb-dev
 opfor
 pc
 pc2
-pmc,openjdk-25-jre-headless
+pmc,openjdk-25-jre
 pvkii
 pvr,libc++1
 pw
@@ -130,7 +130,7 @@ ut3
 ut99
 vh,libc6-dev,libatomic1,libpulse-dev
 vints,dotnet-runtime-8.0
-vpmc,openjdk-21-jre
+vpmc,openjdk-25-jre
 vs
 wet
 wf
