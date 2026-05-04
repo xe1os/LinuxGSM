@@ -8,6 +8,12 @@ echo -n "\"include\":[" >> "shortnamearray.json"
 
 while read -r line; do
 	shortname=$(echo "$line" | awk -F, '{ print $1 }')
+	# If TARGETED_SHORTNAMES is set, skip servers not in the list
+	if [ -n "${TARGETED_SHORTNAMES:-}" ]; then
+		if ! echo "${TARGETED_SHORTNAMES}" | grep -qw "${shortname}"; then
+			continue
+		fi
+	fi
 	export shortname
 	servername=$(echo "$line" | awk -F, '{ print $2 }')
 	export servername
