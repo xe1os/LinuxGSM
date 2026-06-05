@@ -55,7 +55,7 @@ userinput2="${2}"
 # from a different repo and/or branch.
 [ -n "${LGSM_GITHUBUSER}" ] && githubuser="${LGSM_GITHUBUSER}" || githubuser="xe1os"
 [ -n "${LGSM_GITHUBREPO}" ] && githubrepo="${LGSM_GITHUBREPO}" || githubrepo="LinuxGSM"
-[ -n "${LGSM_GITHUBBRANCH}" ] && githubbranch="${LGSM_GITHUBBRANCH}" || githubbranch="master"
+[ -n "${LGSM_GITHUBBRANCH}" ] && githubbranch="${LGSM_GITHUBBRANCH}" || githubbranch="cs2server"
 
 # Check that curl is installed before doing anything
 if [ ! "$(command -v curl 2> /dev/null)" ]; then
@@ -88,7 +88,7 @@ fn_bootstrap_fetch_module() {
 	github_file_url_dir="lgsm/modules"
 	github_file_url_name="${modulefile}"
 	# If master branch will currently running LinuxGSM version to prevent "version mixing". This is ignored if a fork.
-	if [ "${githubbranch}" == "master" ] && [ "${githubuser}" == "xe1os" ] && [ "${commandname}" != "UPDATE-LGSM" ]; then
+	if [ "${githubbranch}" == "cs2server" ] && [ "${githubuser}" == "xe1os" ] && [ "${commandname}" != "UPDATE-LGSM" ]; then
 		remote_fileurl="https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${version}/${github_file_url_dir}/${github_file_url_name}"
 		remote_fileurl_backup="https://bitbucket.org/${githubuser}/${githubrepo}/raw/${version}/${github_file_url_dir}/${github_file_url_name}"
 	else
@@ -221,7 +221,7 @@ fn_bootstrap_fetch_file_github() {
 	github_file_url_dir="${1}"
 	github_file_url_name="${2}"
 	# By default modules will be downloaded from the version release to prevent potential version mixing. Only update-lgsm will allow an update.
-	if [ "${githubbranch}" == "master" ] && [ "${githubuser}" == "xe1os" ] && [ "${commandname}" != "UPDATE-LGSM" ]; then
+	if [ "${githubbranch}" == "cs2server" ] && [ "${githubuser}" == "xe1os" ] && [ "${commandname}" != "UPDATE-LGSM" ]; then
 		remote_fileurl="https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${version}/${github_file_url_dir}/${github_file_url_name}"
 		remote_fileurl_backup="https://bitbucket.org/${githubuser}/${githubrepo}/raw/${version}/${github_file_url_dir}/${github_file_url_name}"
 	else
