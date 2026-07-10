@@ -83,9 +83,10 @@ metamodsource2latestfile=$(wget "${metamodsource2scrapeurl}" -q -O -)
 metamodsource2downloadurl="https://www.metamodsource.net/latest.php?os=linux&version=${metamodsource2version}"
 metamodsource2url="${metamodsource2downloadurl}"
 # Counter Strike Sharp
-cssharplastbuild=$(curl --connect-timeout 10 -sL https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest | jq '(.assets // [])[] | select(.browser_download_url | contains("runtime") and contains("linux"))')
-cssharplatestfile=$(echo "${cssharplastbuild}" | jq -r '.name')
-cssharplatestlink=$(echo "${cssharplastbuild}" | jq -r '.browser_download_url')
+# Counter Strike Sharp
+cssharplastjson=$(curl -4 --connect-timeout 10 -fsSL -H "Accept: application/vnd.github+json" -H "User-Agent: LinuxGSM" https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest 2>/dev/null || true)
+cssharplatestfile=$(echo "${cssharplastjson}" | jq -r '(.assets // [])[] | select((.name // "") | test("linux"; "i")) | select((.name // "") | test("runtime"; "i")) | .name' 2>/dev/null | head -n1)
+cssharplatestlink=$(echo "${cssharplastjson}" | jq -r '(.assets // [])[] | select((.name // "") | test("linux"; "i")) | select((.name // "") | test("runtime"; "i")) | .browser_download_url' 2>/dev/null | head -n1)
 
 # CS:GO Mods
 get5lastbuild=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/get5/releases/latest | jq '(.assets // [])[] |select(.browser_download_url | endswith(".tar.gz"))')
