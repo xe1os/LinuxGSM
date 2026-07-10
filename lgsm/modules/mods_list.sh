@@ -83,18 +83,18 @@ metamodsource2latestfile=$(wget "${metamodsource2scrapeurl}" -q -O -)
 metamodsource2downloadurl="https://www.metamodsource.net/latest.php?os=linux&version=${metamodsource2version}"
 metamodsource2url="${metamodsource2downloadurl}"
 # Counter Strike Sharp
-cssharplastbuild=$(curl --connect-timeout 10 -sL https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest | jq '.assets[] | select(.browser_download_url | contains("runtime") and contains("linux"))')
+cssharplastbuild=$(curl --connect-timeout 10 -sL https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest | jq '(.assets // [])[] | select(.browser_download_url | contains("runtime") and contains("linux"))')
 cssharplatestfile=$(echo "${cssharplastbuild}" | jq -r '.name')
 cssharplatestlink=$(echo "${cssharplastbuild}" | jq -r '.browser_download_url')
 
 # CS:GO Mods
-get5lastbuild=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/get5/releases/latest | jq '.assets[] |select(.browser_download_url | endswith(".tar.gz"))')
+get5lastbuild=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/get5/releases/latest | jq '(.assets // [])[] |select(.browser_download_url | endswith(".tar.gz"))')
 get5latestfile=$(echo -e "${get5lastbuild}" | jq -r '.name')
 get5latestfilelink=$(echo -e "${get5lastbuild}" | jq -r '.browser_download_url')
-csgopracticelatest=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/csgo-practice-mode/releases/latest | jq '.assets[]')
+csgopracticelatest=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/csgo-practice-mode/releases/latest | jq '(.assets // [])[]')
 csgopracticelatestfile=$(echo -e "${csgopracticelatest}" | jq -r '.name')
 csgopracticelatestlink=$(echo -e "${csgopracticelatest}" | jq -r '.browser_download_url')
-csgopuglatest=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/csgo-pug-setup/releases/latest | jq '.assets[]')
+csgopuglatest=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/csgo-pug-setup/releases/latest | jq '(.assets // [])[]')
 csgopuglatestfile=$(echo -e "${csgopuglatest}" | jq -r '.name')
 csgopuglatestlink=$(echo -e "${csgopuglatest}" | jq -r '.browser_download_url')
 gokzlatestversion=$(curl --connect-timeout 3 -s https://api.github.com/repos/KZGlobalTeam/gokz/releases/latest | grep "tag_name" | cut -d : -f 2,3 | sed -E 's/.*"([^"]+)".*/\1/')
@@ -105,21 +105,21 @@ movementapilatestfile="MovementAPI-v${movementapilatestversion}.zip"
 movementapilatestlink="https://github.com/danzayau/MovementAPI/releases/download/${movementapilatestversion}/${movementapilatestfile}"
 
 # CS2 Mods
-simpleadminlatestlink=$(curl --connect-timeout 10 -sL https://api.github.com/repos/daffyyyy/CS2-SimpleAdmin/releases/latest | jq -r '.assets[].browser_download_url')
+simpleadminlatestlink=$(curl --connect-timeout 10 -sL https://api.github.com/repos/daffyyyy/CS2-SimpleAdmin/releases/latest | jq -r '(.assets // [])[].browser_download_url')
 matchzylatestversion=$(curl --connect-timeout 10 -s https://api.github.com/repos/xe1os/MatchZy/releases/latest | grep "tag_name" | cut -d : -f 2,3 | sed -E 's/.*"([^"]+)".*/\1/')
 matchzylatestfile="MatchZy-${matchzylatestversion}.zip"
 matchzylatestlink="https://github.com/xe1os/MatchZy/releases/download/${matchzylatestversion}/${matchzylatestfile}"
 
 # Rust
 carbonrustapilatestfile="Carbon.Linux.Release.tar.gz"
-carbonrustlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/CarbonCommunity/Carbon.Core/releases/tags/production_build | jq -r '.assets[]|select(.name == "Carbon.Linux.Release.tar.gz") | .browser_download_url')
+carbonrustlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/CarbonCommunity/Carbon.Core/releases/tags/production_build | jq -r '(.assets // [])[]|select(.name == "Carbon.Linux.Release.tar.gz") | .browser_download_url')
 
 # Oxide
-oxiderustlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/OxideMod/Oxide.Rust/releases/latest | jq -r '.assets[]|select(.browser_download_url | contains("linux")) | .browser_download_url')
-oxidehurtworldlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/OxideMod/Oxide.Hurtworld/releases/latest | jq -r '.assets[].browser_download_url')
-oxidesdtdlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/OxideMod/Oxide.SevenDaysToDie/releases/latest | jq -r '.assets[]|select(.browser_download_url | contains("linux")) | .browser_download_url')
+oxiderustlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/OxideMod/Oxide.Rust/releases/latest | jq -r '(.assets // [])[]|select(.browser_download_url | contains("linux")) | .browser_download_url')
+oxidehurtworldlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/OxideMod/Oxide.Hurtworld/releases/latest | jq -r '(.assets // [])[].browser_download_url')
+oxidesdtdlatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/OxideMod/Oxide.SevenDaysToDie/releases/latest | jq -r '(.assets // [])[]|select(.browser_download_url | contains("linux")) | .browser_download_url')
 # Valheim Plus
-valheimpluslatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/Grantapher/ValheimPlus/releases/latest | jq -r '.assets[]|select(.browser_download_url | contains("UnixServer.tar.gz")) | .browser_download_url')
+valheimpluslatestlink=$(curl --connect-timeout 3 -sL https://api.github.com/repos/Grantapher/ValheimPlus/releases/latest | jq -r '(.assets // [])[]|select(.browser_download_url | contains("UnixServer.tar.gz")) | .browser_download_url')
 # Valheim BepInEx
 bepinexvhlatestlink=$(curl --connect-timeout 3 -sL "https://thunderstore.io/api/experimental/package/denikson/BepInExPack_Valheim/" -H "accept: application/json" | jq -r '.latest.download_url')
 
