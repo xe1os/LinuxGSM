@@ -84,9 +84,9 @@ metamodsource2downloadurl="https://www.metamodsource.net/latest.php?os=linux&ver
 metamodsource2url="${metamodsource2downloadurl}"
 # Counter Strike Sharp
 # Counter Strike Sharp
-cssharplastjson=$(curl -4 --connect-timeout 10 -fsSL -H "Accept: application/vnd.github+json" -H "User-Agent: LinuxGSM" https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest 2>/dev/null || true)
-cssharplatestfile=$(echo "${cssharplastjson}" | jq -r '(.assets // [])[] | select((.name // "") | test("linux"; "i")) | select((.name // "") | test("runtime"; "i")) | .name' 2>/dev/null | head -n1)
-cssharplatestlink=$(echo "${cssharplastjson}" | jq -r '(.assets // [])[] | select((.name // "") | test("linux"; "i")) | select((.name // "") | test("runtime"; "i")) | .browser_download_url' 2>/dev/null | head -n1)
+cssharplastjson=$(curl -4 --connect-timeout 10 -fsSL -H "Accept: application/vnd.github+json" -H "User-Agent: LinuxGSM" https://api.github.com/repos/roflmuffin/CounterStrikeSharp/releases/latest 2> /dev/null || true)
+cssharplatestfile=$(echo "${cssharplastjson}" | jq -r '(.assets // [])[] | select((.name // "") | test("linux"; "i")) | select((.name // "") | test("runtime"; "i")) | .name' 2> /dev/null | head -n1)
+cssharplatestlink=$(echo "${cssharplastjson}" | jq -r '(.assets // [])[] | select((.name // "") | test("linux"; "i")) | select((.name // "") | test("runtime"; "i")) | .browser_download_url' 2> /dev/null | head -n1)
 
 # CS:GO Mods
 get5lastbuild=$(curl --connect-timeout 3 -sL https://api.github.com/repos/splewis/get5/releases/latest | jq '(.assets // [])[] |select(.browser_download_url | endswith(".tar.gz"))')
@@ -188,7 +188,7 @@ mod_info_cleaner=(MOD "cleaner" "cleaner" "https://github.com/e54385991/console-
 mod_info_metamodsource2=(MOD "metamodsource2" "Metamod: Source 2 (dev build)" "${metamodsource2url}" "${metamodsource2latestfile}" "0" "LowercaseOff" "${systemdir}" "addons/metamod/metaplugins.ini;" "source2;" "GAMES" "NOTGAMES" "https://www.metamodsource.net" "Plugins Framework ported to Source 2")
 mod_info_cssharp=(MOD "cssharp" "Counter Strike Sharp" "${cssharplatestlink}" "${cssharplatestfile}" "0" "LowercaseOff" "${systemdir}" "addons/counterstrikesharp/configs;" "source2;" "GAMES" "NOTGAMES" "https://docs.cssharp.dev/" "Plugins/mod framework (Requires Metamod: Source 2)")
 mod_info_simpleadmin=(MOD "simpleadmin" "CS2-SimpleAdmin" "${simpleadminlatestlink}" "CS2-SimpleAdmin.zip" "0" "LowercaseOff" "${systemdir}/addons" "addons/counterstrikesharp/configs/plugins/CS2-SimpleAdmin;" "source2;" "GAMES" "NOTGAMES" "https://cs2-simpleadmin.daffyy.love/" "Manage your Counter-Strike 2 server by simple commands")
-mod_info_matchzy=(MOD "matchzy" "MatchZy" "${matchzylatestlink}" "${matchzylatestfile}"  "0" "LowercaseOff" "${systemdir}" "cfg/MatchZy;" "source2;" "GAMES" "NOTGAMES" "https://shobhit-pathak.github.io/MatchZy/" "Plugin for running and managing practice/pugs/scrims/matches")
+mod_info_matchzy=(MOD "matchzy" "MatchZy" "${matchzylatestlink}" "${matchzylatestfile}" "0" "LowercaseOff" "${systemdir}" "cfg/MatchZy;" "source2;" "GAMES" "NOTGAMES" "https://shobhit-pathak.github.io/MatchZy/" "Plugin for running and managing practice/pugs/scrims/matches")
 
 # Garry's Mod Addons
 mod_info_ulib=(MOD "ulib" "ULib" "https://codeload.github.com/TeamUlysses/ulib/zip/master" "ulib-master.zip" "0" "LowercaseOff" "${systemdir}/addons" "OVERWRITE" "ENGINES" "Garry's Mod;" "NOTGAMES" "http://ulyssesmod.net" "Complete Framework")
